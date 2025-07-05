@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b46assio5wwln"]
+[gd_scene load_steps=8 format=3 uid="uid://b46assio5wwln"]
 
 [ext_resource type="Script" uid="uid://b30f3s6c6oj1o" path="res://scripts/mosquito.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bry680ye7oean" path="res://assets/aedes_aegypti_mosquito_da_dengue_low_poly/scene.gltf" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://c0rvo174k132v" path="res://scripts/flying_system.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://b42q6pq3qn6sa" path="res://scripts/camera_3d.gd" id="4_tbgi4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
 size = Vector3(30, 0.2, 30)
@@ -9,33 +11,34 @@ size = Vector3(30, 0.2, 30)
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
 size = Vector3(30, 0.2, 30)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5qli"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_sugp2"]
+size = Vector3(2.02094, 2.72833, 1.02246)
 
 [node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.489383, -0.872069, -3.81194e-08, 0, -4.37114e-08, 1, -0.872069, 0.489383, 2.13916e-08, 0, 7.52511, 0)
+transform = Transform3D(-0.489383, -0.872069, -3.81194e-08, 0, -4.37114e-08, 1, -0.872069, 0.489383, 2.13916e-08, 0, 22.815, 18.854)
+light_color = Color(0.99348, 0.851572, 0.802716, 1)
 light_energy = 3.5
 shadow_enabled = true
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 mesh = SubResource("BoxMesh_sgp6g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("BoxShape3D_sgp6g")
-
-[node name="CameraRig" type="Node3D" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="CameraRig"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 5, 8)
 
 [node name="Mosquito" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67436, 0)
+visible = false
 script = ExtResource("1_0wfyh")
 
 [node name="Sketchfab_Scene" parent="Mosquito" instance=ExtResource("1_o5qli")]
+visible = false
 
 [node name="Skeleton3D" parent="Mosquito/Sketchfab_Scene/Sketchfab_model/aedes_fbx/Object_2/RootNode/Armature/Object_6" index="0"]
 bones/1/rotation = Quaternion(0.189526, 0.770427, 0.266906, -0.547068)
@@ -43,7 +46,32 @@ bones/3/rotation = Quaternion(-0.189526, 0.770427, 0.266906, 0.547068)
 bones/5/rotation = Quaternion(0.943057, -3.50791e-09, -3.5079e-09, -0.332631)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mosquito"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.233187, 0)
-shape = SubResource("CapsuleShape3D_o5qli")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.244417, -0.0853271)
+visible = false
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="Mosquito2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+linear_damp = 1.0
+angular_damp = 1.0
+script = ExtResource("4_jyhfs")
+
+[node name="Sketchfab_Scene" parent="Mosquito2" instance=ExtResource("1_o5qli")]
+
+[node name="Skeleton3D" parent="Mosquito2/Sketchfab_Scene/Sketchfab_model/aedes_fbx/Object_2/RootNode/Armature/Object_6" index="0"]
+bones/1/rotation = Quaternion(0.189526, 0.770427, 0.266906, -0.547068)
+bones/3/rotation = Quaternion(-0.189526, 0.770427, 0.266906, 0.547068)
+bones/5/rotation = Quaternion(0.943057, -3.50791e-09, -3.5079e-09, -0.332631)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mosquito2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0157776, -0.244417, -0.260528)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="CameraPivot" type="Node3D" parent="Mosquito2"]
+
+[node name="Camera3D" type="Camera3D" parent="Mosquito2/CameraPivot"]
+transform = Transform3D(-1, -3.87345e-08, 7.83733e-08, 0, 0.896486, 0.443071, -8.74228e-08, 0.443071, -0.896486, 0, 1.73115, -3.24307)
+script = ExtResource("4_tbgi4")
 
 [editable path="Mosquito/Sketchfab_Scene"]
+[editable path="Mosquito2/Sketchfab_Scene"]
