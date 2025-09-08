@@ -1,12 +1,10 @@
-[gd_scene load_steps=25 format=4 uid="uid://b46assio5wwln"]
+[gd_scene load_steps=24 format=4 uid="uid://b46assio5wwln"]
 
-[ext_resource type="Script" uid="uid://b30f3s6c6oj1o" path="res://scripts/mosquito.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bry680ye7oean" path="res://assets/aedes_aegypti_mosquito_da_dengue_low_poly/scene.gltf" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://dpe8k78jbuhdk" path="res://addons/simplegrasstextured/materials/grass.material" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://bx4fvuiivcxq8" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/fountain.gltf" id="2_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://j4qgnn3benxu" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/bench.gltf" id="3_0ld40"]
 [ext_resource type="PackedScene" uid="uid://b7sajeyqa8j3i" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/cobble_stones.gltf" id="4_gqmmt"]
-[ext_resource type="Script" uid="uid://c0rvo174k132v" path="res://scripts/flying_system.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://b42q6pq3qn6sa" path="res://scripts/camera_3d.gd" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://c45dgnb3snp8d" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/cobble_stones_large.gltf" id="5_yc10j"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="6_85g3d"]
@@ -15,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bvyvok4id7tl" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/flower_B.gltf" id="7_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://b60tapcmcbe1p" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/street_lantern.gltf" id="8_y6deb"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="8_ya4ey"]
+[ext_resource type="Script" uid="uid://b61eq8n6sqmia" path="res://scripts/mosquito_controller.gd" id="12_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://bvllwy55kd20g" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/bush_large.gltf" id="16_og1vs"]
 [ext_resource type="PackedScene" uid="uid://xqqb84dyokbi" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/bush.gltf" id="17_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://datagsmy1u407" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/bird.gltf" id="18_vxglm"]
@@ -206,11 +205,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.3334, 0.5, -52.6352)
 
 [node name="Mosquito" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67436, 0)
-visible = false
-script = ExtResource("1_0wfyh")
+script = ExtResource("12_dp3eg")
 
 [node name="Sketchfab_Scene" parent="Mosquito" instance=ExtResource("1_o5qli")]
-visible = false
 
 [node name="Skeleton3D" parent="Mosquito/Sketchfab_Scene/Sketchfab_model/aedes_fbx/Object_2/RootNode/Armature/Object_6" index="0"]
 bones/1/rotation = Quaternion(0.189526, 0.770427, 0.266906, -0.547068)
@@ -219,29 +216,11 @@ bones/5/rotation = Quaternion(0.943057, -3.50791e-09, -3.5079e-09, -0.332631)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mosquito"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.244417, -0.0853271)
-visible = false
 shape = SubResource("BoxShape3D_sugp2")
 
-[node name="Mosquito2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-linear_damp = 1.0
-angular_damp = 1.0
-script = ExtResource("4_jyhfs")
+[node name="CameraPivot" type="Node3D" parent="Mosquito"]
 
-[node name="Sketchfab_Scene" parent="Mosquito2" instance=ExtResource("1_o5qli")]
-
-[node name="Skeleton3D" parent="Mosquito2/Sketchfab_Scene/Sketchfab_model/aedes_fbx/Object_2/RootNode/Armature/Object_6" index="0"]
-bones/1/rotation = Quaternion(0.189526, 0.770427, 0.266906, -0.547068)
-bones/3/rotation = Quaternion(-0.189526, 0.770427, 0.266906, 0.547068)
-bones/5/rotation = Quaternion(0.943057, -3.50791e-09, -3.5079e-09, -0.332631)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mosquito2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0157776, -0.244417, -0.260528)
-shape = SubResource("BoxShape3D_sugp2")
-
-[node name="CameraPivot" type="Node3D" parent="Mosquito2"]
-
-[node name="Camera3D" type="Camera3D" parent="Mosquito2/CameraPivot"]
+[node name="Camera3D" type="Camera3D" parent="Mosquito/CameraPivot"]
 transform = Transform3D(-1, -3.87345e-08, 7.83733e-08, 0, 0.896486, 0.443071, -8.74228e-08, 0.443071, -0.896486, 0, 1.73115, -3.24307)
 script = ExtResource("4_tbgi4")
 
@@ -266,4 +245,3 @@ metadata/_custom_type_script = "uid://2juaclm8gc1n"
 metadata/SimpleGrassTextured = "2.0.5"
 
 [editable path="Mosquito/Sketchfab_Scene"]
-[editable path="Mosquito2/Sketchfab_Scene"]
