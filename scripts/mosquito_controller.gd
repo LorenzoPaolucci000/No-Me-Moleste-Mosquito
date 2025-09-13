@@ -4,14 +4,14 @@ extends CharacterBody3D
 # MOVEMENT VARIABLES
 # -------------------------
 @export var walk_speed: float = 5.0
-@export var gravity: float = 9.8
+@export var gravity: float = 13
 @export var rotation_speed: float = 10.0
 
 # -------------------------
 # FLIGHT VARIABLES
 # -------------------------
 @export var flight_speed: float = 7.0
-@export var mouse_sensibility: float = 30.0
+@export var mouse_sensibility: float = 35.0
 var mouse_movement: Vector2 = Vector2.ZERO
 
 
@@ -137,7 +137,7 @@ func handle_flight(delta):
 	if Input.is_action_pressed("move_up"):
 		input_dir.y += 1
 	if Input.is_action_pressed("move_down"):
-		input_dir.y -= 1
+		input_dir.y -= 2
 
 	# Normalize and apply flight speed
 	if input_dir != Vector3.ZERO:
@@ -159,6 +159,6 @@ func handle_flight(delta):
 
 	# Roll with keyboard (A/D)
 	if Input.is_action_pressed("move_right"):
-		rotation.z += 0.3 * delta
+		rotation.z += 0.6 * delta
 	if Input.is_action_pressed("move_left"):
-		rotation.z -= 0.3 * delta
+		rotation.z -= 0.6 * delta

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://b46assio5wwln"]
+[gd_scene load_steps=25 format=4 uid="uid://b46assio5wwln"]
 
 [ext_resource type="PackedScene" uid="uid://bry680ye7oean" path="res://assets/aedes_aegypti_mosquito_da_dengue_low_poly/scene.gltf" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://dpe8k78jbuhdk" path="res://addons/simplegrasstextured/materials/grass.material" id="1_tipki"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://b61eq8n6sqmia" path="res://scripts/mosquito_controller.gd" id="12_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://bvllwy55kd20g" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/bush_large.gltf" id="16_og1vs"]
 [ext_resource type="PackedScene" uid="uid://xqqb84dyokbi" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/bush.gltf" id="17_2wyq8"]
+[ext_resource type="AudioStream" uid="uid://dpv7ensx2et31" path="res://assets/music/tex-mex-delight-mexican-mariachi-113044.mp3" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://datagsmy1u407" path="res://assets/Tiny_Treats_Pretty_Park_1.0_FREE/bird.gltf" id="18_vxglm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
@@ -243,5 +244,9 @@ sgt_tool_shape = {
 }
 metadata/_custom_type_script = "uid://2juaclm8gc1n"
 metadata/SimpleGrassTextured = "2.0.5"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_dp3eg")
+autoplay = true
 
 [editable path="Mosquito/Sketchfab_Scene"]
