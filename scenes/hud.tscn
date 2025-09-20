@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj3aem81xdv7c"]
+
+[ext_resource type="Script" uid="uid://co2c77eyisujn" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="FontFile" uid="uid://cffihnlelsj4u" path="res://assets/font/¡Viva México cabrones!.ttf" id="2_oo0fn"]
+
+[sub_resource type="Theme" id="Theme_oo0fn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
+bg_color = Color(0.709804, 0.67451, 0.662745, 0.564706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ysmq"]
+bg_color = Color(0.878431, 0.768627, 0, 0.552941)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ahhtf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PollinationBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.242
+anchor_bottom = 0.042
+offset_left = 293.0
+offset_top = 45.0
+offset_right = 293.216
+offset_bottom = 44.784
+grow_horizontal = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_oo0fn")
+theme_override_styles/background = SubResource("StyleBoxFlat_oo0fn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5ysmq")
+rounded = true
+show_percentage = false
+
+[node name="MissionLabel" type="Label" parent="CanvasLayer"]
+top_level = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -164.0
+offset_top = 47.0
+offset_right = -4.0
+offset_bottom = 65.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_oo0fn")
+text = "Mission Complete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Objective" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oo0fn")
+text = "Pollinate the Flowers"
+horizontal_alignment = 1
