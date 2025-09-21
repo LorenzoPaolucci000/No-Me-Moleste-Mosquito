@@ -161,9 +161,9 @@ func handle_flight(delta):
 
 	# Roll with keyboard (A/D)
 	if Input.is_action_pressed("move_right"):
-		rotation.z += 0.6 * delta
+		rotation.z += 1 * delta
 	if Input.is_action_pressed("move_left"):
-		rotation.z -= 0.6 * delta
+		rotation.z -= 1 * delta
 
 # -------------------------
 # POLLINATION SYSTEM
