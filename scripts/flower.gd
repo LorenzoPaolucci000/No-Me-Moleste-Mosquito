@@ -19,17 +19,16 @@ func _on_body_entered(body):
 		if not is_depleted:
 			body.increase_pollination()
 			is_depleted = true  # Mark flower as used
-			# Optional: change flower appearance to show it's depleted
 			_update_flower_appearance()
 
 func _on_body_exited(body):
 	# Optional: handle when mosquito exits the flower
 	if body.is_in_group("player"):
-		pass  # Add any exit behavior here if needed
+		pass  
 
-# Optional: Visual feedback when flower becomes depleted
+# Visual feedback when flower becomes depleted
 func _update_flower_appearance():
-	# Example: make the flower darker/grayer to show it's used
+	# Make the flower darker/grayer to show it's used
 	var mesh_instance = get_node_or_null("flower_A")
 	if mesh_instance and mesh_instance is MeshInstance3D:
 		# Create a new material instance to avoid affecting other flowers
@@ -37,9 +36,8 @@ func _update_flower_appearance():
 		if material:
 			material = material.duplicate()
 		else:
-			# If no material, create a basic one
 			material = StandardMaterial3D.new()
 		
 		# Make the flower appear "used" (darker/grayer)
-		material.albedo_color = material.albedo_color * 0.5  # Make it darker
+		material.albedo_color = material.albedo_color * 0.5  
 		mesh_instance.set_surface_override_material(0, material)

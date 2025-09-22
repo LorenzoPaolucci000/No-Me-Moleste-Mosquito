@@ -45,9 +45,10 @@ SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
 
 [editor]
 
-movie_writer/movie_file="C:\\Users\\Utente\\Desktop\\Didattica UNICAM\\MAGISTRALE\\AppliedGameDesign\\No-Me-Moleste-Mosquito\\demo.webm"
+movie_writer/mjpeg_quality=1.0
+movie_writer/movie_file="C:/Users/Utente/Desktop/Didattica UNICAM/MAGISTRALE/AppliedGameDesign/No-Me-Moleste-Mosquito/demo/video_gameplay/demo-gameplay.avi"
 movie_writer/disable_vsync=true
-movie_writer/fps=30
+movie_writer/fps=40
 
 [editor_plugins]
 

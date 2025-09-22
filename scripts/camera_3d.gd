@@ -1,8 +1,8 @@
 extends Camera3D
 
-@export var target: Node3D           # il riferimento al RigidBody
+@export var target: Node3D 
 @export var offset := Vector3(0, 2, -6)
-@export var follow_speed := 30.0      # smooth
+@export var follow_speed := 30.0 
 
 func _process(delta):
 	if target:
